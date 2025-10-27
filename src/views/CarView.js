@@ -5,7 +5,7 @@ import {
   formatResultHeader, 
   formatCarStatus, 
   formatWinners 
-} from '../utility/formatters.js';
+} from '../utilities/formatters.js';
 
 /**
  * 자동차 경주 게임의 사용자 인터페이스를 담당하는 View 클래스

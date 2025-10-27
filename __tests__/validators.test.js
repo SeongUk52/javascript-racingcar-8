@@ -1,4 +1,4 @@
-import { validateCarNames, validateAttempts, parseCarNames } from '../src/utility/validators.js';
+import { validateCarNames, validateAttempts, parseCarNames } from '../src/utilities/validators.js';
 
 describe('validators 유틸리티', () => {
   describe('validateCarNames', () => {

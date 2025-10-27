@@ -5,7 +5,7 @@ import {
   formatResultHeader, 
   formatCarNamesPrompt, 
   formatAttemptsPrompt 
-} from '../src/utility/formatters.js';
+} from '../src/utilities/formatters.js';
 
 describe('formatters 유틸리티', () => {
   describe('formatCarStatus', () => {
