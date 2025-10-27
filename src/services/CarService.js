@@ -17,10 +17,8 @@ class CarService {
   /**
    * 자동차 이름들을 검증하고 Car 객체들을 생성한다.
    * @param {string[]} carNames - 자동차 이름 배열
-   * @throws {Error} 검증 실패 시 에러 발생
    */
   createCars(carNames) {
-    this.#validateCarNames(carNames);
     this.#carRepository.clear();
     
     for (const name of carNames) {
@@ -73,43 +71,6 @@ class CarService {
       .map(car => car.getName());
   }
 
-  /**
-   * 자동차 이름들을 검증한다.
-   * @param {string[]} carNames - 검증할 자동차 이름 배열
-   * @throws {Error} 검증 실패 시 에러 발생
-   */
-  #validateCarNames(carNames) {
-    if (!Array.isArray(carNames) || carNames.length === 0) {
-      throw new Error('[ERROR] 자동차 이름이 입력되지 않았습니다.');
-    }
-
-    for (const name of carNames) {
-      if (typeof name !== 'string' || name.trim() === '') {
-        throw new Error('[ERROR] 자동차 이름은 비어있을 수 없습니다.');
-      }
-      
-      if (name.length > 5) {
-        throw new Error('[ERROR] 자동차 이름은 5글자 이하여야 합니다.');
-      }
-    }
-
-    // 중복 검사
-    const uniqueNames = new Set(carNames);
-    if (uniqueNames.size !== carNames.length) {
-      throw new Error('[ERROR] 자동차 이름은 중복될 수 없습니다.');
-    }
-  }
-
-  /**
-   * 시도 횟수를 검증한다.
-   * @param {number} attempts - 시도 횟수
-   * @throws {Error} 검증 실패 시 에러 발생
-   */
-  validateAttempts(attempts) {
-    if (!Number.isInteger(attempts) || attempts <= 0) {
-      throw new Error('[ERROR] 시도 횟수는 양의 정수여야 합니다.');
-    }
-  }
 }
 
 export default CarService;

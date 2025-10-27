@@ -20,7 +20,7 @@ describe('CarService 클래스', () => {
     carService = new CarService(mockRepository);
   });
 
-  describe('자동차 생성 및 검증', () => {
+  describe('자동차 생성', () => {
     test('유효한 자동차 이름들로 자동차를 생성할 수 있다', () => {
       // given
       const carNames = ['pobi', 'woni', 'jun'];
@@ -34,46 +34,6 @@ describe('CarService 클래스', () => {
       expect(cars[0].getName()).toBe('pobi');
       expect(cars[1].getName()).toBe('woni');
       expect(cars[2].getName()).toBe('jun');
-    });
-
-    test('자동차 이름이 5글자를 초과하면 에러가 발생한다', () => {
-      // given
-      const carNames = ['pobi', 'verylongname'];
-
-      // when & then
-      expect(() => {
-        carService.createCars(carNames);
-      }).toThrow('[ERROR] 자동차 이름은 5글자 이하여야 합니다.');
-    });
-
-    test('자동차 이름이 비어있으면 에러가 발생한다', () => {
-      // given
-      const carNames = ['pobi', ''];
-
-      // when & then
-      expect(() => {
-        carService.createCars(carNames);
-      }).toThrow('[ERROR] 자동차 이름은 비어있을 수 없습니다.');
-    });
-
-    test('중복된 자동차 이름이 있으면 에러가 발생한다', () => {
-      // given
-      const carNames = ['pobi', 'woni', 'pobi'];
-
-      // when & then
-      expect(() => {
-        carService.createCars(carNames);
-      }).toThrow('[ERROR] 자동차 이름은 중복될 수 없습니다.');
-    });
-
-    test('자동차 이름 배열이 비어있으면 에러가 발생한다', () => {
-      // given
-      const carNames = [];
-
-      // when & then
-      expect(() => {
-        carService.createCars(carNames);
-      }).toThrow('[ERROR] 자동차 이름이 입력되지 않았습니다.');
     });
   });
 
@@ -194,30 +154,4 @@ describe('CarService 클래스', () => {
     });
   });
 
-  describe('시도 횟수 검증', () => {
-    test('유효한 시도 횟수를 통과시킨다', () => {
-      // when & then
-      expect(() => {
-        carService.validateAttempts(5);
-      }).not.toThrow();
-    });
-
-    test('양수가 아닌 시도 횟수는 에러를 발생시킨다', () => {
-      // when & then
-      expect(() => {
-        carService.validateAttempts(0);
-      }).toThrow('[ERROR] 시도 횟수는 양의 정수여야 합니다.');
-
-      expect(() => {
-        carService.validateAttempts(-1);
-      }).toThrow('[ERROR] 시도 횟수는 양의 정수여야 합니다.');
-    });
-
-    test('정수가 아닌 시도 횟수는 에러를 발생시킨다', () => {
-      // when & then
-      expect(() => {
-        carService.validateAttempts(3.5);
-      }).toThrow('[ERROR] 시도 횟수는 양의 정수여야 합니다.');
-    });
-  });
 });
