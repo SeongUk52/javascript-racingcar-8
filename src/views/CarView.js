@@ -54,6 +54,20 @@ class CarView {
   }
 
   /**
+   * 게임 결과를 전체적으로 출력한다.
+   * @param {Array[]} gameResults - 각 차수별 자동차 상태 배열
+   */
+  printGameResults(gameResults) {
+    this.printResultHeader();
+    
+    for (let i = 0; i < gameResults.length; i++) {
+      const status = gameResults[i];
+      const isLastRound = i === gameResults.length - 1;
+      this.printCurrentStatus(status, !isLastRound);
+    }
+  }
+
+  /**
    * 최종 우승자를 출력한다.
    * @param {string[]} winners - 우승자 이름 배열
    */

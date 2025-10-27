@@ -117,6 +117,32 @@ describe('CarView 클래스', () => {
       expect(MissionUtils.Console.print).toHaveBeenCalledWith('최종 우승자 : pobi, jun');
     });
 
+    test('게임 결과를 전체적으로 출력한다', () => {
+      // given
+      const gameResults = [
+        [
+          { name: 'pobi', position: 1, displayPosition: '-' },
+          { name: 'woni', position: 0, displayPosition: '' }
+        ],
+        [
+          { name: 'pobi', position: 2, displayPosition: '--' },
+          { name: 'woni', position: 1, displayPosition: '-' }
+        ]
+      ];
+
+      // when
+      carView.printGameResults(gameResults);
+
+      // then
+      expect(MissionUtils.Console.print).toHaveBeenCalledWith('\n실행 결과');
+      expect(MissionUtils.Console.print).toHaveBeenCalledWith('pobi : -');
+      expect(MissionUtils.Console.print).toHaveBeenCalledWith('woni : ');
+      expect(MissionUtils.Console.print).toHaveBeenCalledWith(''); // 첫 번째 차수 후 빈 줄
+      expect(MissionUtils.Console.print).toHaveBeenCalledWith('pobi : --');
+      expect(MissionUtils.Console.print).toHaveBeenCalledWith('woni : -');
+      // 마지막 차수에는 빈 줄 없음
+    });
+
     test('에러 메시지를 출력한다', () => {
       // given
       const errorMessage = '[ERROR] 자동차 이름은 5글자 이하여야 합니다.';

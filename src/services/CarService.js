@@ -54,6 +54,31 @@ class CarService {
   }
 
   /**
+   * 자동차 경주 게임을 진행한다.
+   * @param {string[]} carNames - 자동차 이름 배열
+   * @param {number} attempts - 시도 횟수
+   * @returns {Object} 게임 결과 (각 차수별 상태와 우승자)
+   */
+  playGame(carNames, attempts) {
+    this.createCars(carNames);
+    
+    const gameResults = [];
+    
+    for (let i = 0; i < attempts; i++) {
+      this.moveAllCars();
+      const status = this.getCurrentStatus();
+      gameResults.push(status);
+    }
+    
+    const winners = this.findWinners();
+    
+    return {
+      gameResults,
+      winners
+    };
+  }
+
+  /**
    * 우승자를 찾아 반환한다.
    * @returns {string[]} 우승자 이름 배열
    * @throws {Error} 자동차가 없을 때 에러 발생

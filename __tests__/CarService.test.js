@@ -109,6 +109,51 @@ describe('CarService 클래스', () => {
     });
   });
 
+  describe('게임 진행', () => {
+    test('전체 게임을 진행하고 결과를 반환한다', () => {
+      // given
+      const carNames = ['pobi', 'woni'];
+      const attempts = 2;
+      
+      MissionUtils.Random.pickNumberInRange
+        .mockReturnValueOnce(4)  // 첫 번째 차수: pobi 전진
+        .mockReturnValueOnce(3)   // 첫 번째 차수: woni 정지
+        .mockReturnValueOnce(4)  // 두 번째 차수: pobi 전진
+        .mockReturnValueOnce(4);  // 두 번째 차수: woni 전진
+
+      // when
+      const result = carService.playGame(carNames, attempts);
+
+      // then
+      expect(result.gameResults).toHaveLength(2);
+      expect(result.gameResults[0]).toEqual([
+        { name: 'pobi', position: 1, displayPosition: '-' },
+        { name: 'woni', position: 0, displayPosition: '' }
+      ]);
+      expect(result.gameResults[1]).toEqual([
+        { name: 'pobi', position: 2, displayPosition: '--' },
+        { name: 'woni', position: 1, displayPosition: '-' }
+      ]);
+      expect(result.winners).toEqual(['pobi']);
+    });
+
+    test('공동 우승자 게임을 진행한다', () => {
+      // given
+      const carNames = ['pobi', 'woni'];
+      const attempts = 1;
+      
+      MissionUtils.Random.pickNumberInRange
+        .mockReturnValueOnce(4)  // pobi 전진
+        .mockReturnValueOnce(4);  // woni 전진
+
+      // when
+      const result = carService.playGame(carNames, attempts);
+
+      // then
+      expect(result.winners).toEqual(['pobi', 'woni']);
+    });
+  });
+
   describe('우승자 찾기', () => {
     test('단독 우승자를 올바르게 찾는다', () => {
       // given
