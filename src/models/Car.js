@@ -21,6 +21,30 @@ class Car {
   move() {
     this.#position += 1;
   }
+
+  /**
+   * 자동차의 이름을 반환한다.
+   * @returns {string} 자동차 이름
+   */
+  getName() {
+    return this.#name;
+  }
+
+  /**
+   * 자동차의 현재 위치를 반환한다.
+   * @returns {number} 현재 위치
+   */
+  getPosition() {
+    return this.#position;
+  }
+
+  /**
+   * 자동차의 현재 상태를 문자열로 반환한다.
+   * @returns {string} 현재 위치만큼의 '-' 문자열
+   */
+  getDisplayPosition() {
+    return '-'.repeat(this.#position);
+  }
 }
 
-module.exports = Car;
+export default Car;
