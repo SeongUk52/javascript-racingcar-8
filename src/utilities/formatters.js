@@ -20,7 +20,7 @@ export const formatCarStatus = (name, displayPosition) => {
  */
 export const formatWinners = (winners) => {
   const winnerNames = winners.join(', ');
-  return `최종 우승자 : ${winnerNames}`;
+  return `\n최종 우승자 : ${winnerNames}`;
 };
 
 /**
@@ -45,7 +45,7 @@ export const formatResultHeader = () => {
  * @returns {string} 포맷팅된 프롬프트 문자열
  */
 export const formatCarNamesPrompt = () => {
-  return '경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)';
+  return '경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n';
 };
 
 /**
@@ -53,5 +53,5 @@ export const formatCarNamesPrompt = () => {
  * @returns {string} 포맷팅된 프롬프트 문자열
  */
 export const formatAttemptsPrompt = () => {
-  return '시도할 횟수는 몇 회인가요?';
+  return '시도할 횟수는 몇 회인가요?\n';
 };

@@ -29,8 +29,8 @@ describe('CarView 클래스', () => {
       const result = await carView.inputCarNames();
 
       // then
-      expect(MissionUtils.Console.print).toHaveBeenCalledWith(
-        '경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)'
+      expect(MissionUtils.Console.readLineAsync).toHaveBeenCalledWith(
+        '경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n'
       );
       expect(MissionUtils.Console.readLineAsync).toHaveBeenCalledTimes(1);
       expect(result).toBe(expectedInput);
@@ -45,7 +45,7 @@ describe('CarView 클래스', () => {
       const result = await carView.inputAttempts();
 
       // then
-      expect(MissionUtils.Console.print).toHaveBeenCalledWith('시도할 횟수는 몇 회인가요?');
+      expect(MissionUtils.Console.readLineAsync).toHaveBeenCalledWith('시도할 횟수는 몇 회인가요?\n');
       expect(MissionUtils.Console.readLineAsync).toHaveBeenCalledTimes(1);
       expect(result).toBe(expectedInput);
     });
@@ -103,7 +103,7 @@ describe('CarView 클래스', () => {
       carView.printWinners(winners);
 
       // then
-      expect(MissionUtils.Console.print).toHaveBeenCalledWith('최종 우승자 : pobi');
+      expect(MissionUtils.Console.print).toHaveBeenCalledWith('\n최종 우승자 : pobi');
     });
 
     test('공동 우승자를 올바르게 출력한다', () => {
@@ -114,7 +114,7 @@ describe('CarView 클래스', () => {
       carView.printWinners(winners);
 
       // then
-      expect(MissionUtils.Console.print).toHaveBeenCalledWith('최종 우승자 : pobi, jun');
+      expect(MissionUtils.Console.print).toHaveBeenCalledWith('\n최종 우승자 : pobi, jun');
     });
 
     test('게임 결과를 전체적으로 출력한다', () => {
@@ -191,7 +191,7 @@ describe('CarView 클래스', () => {
       expect(MissionUtils.Console.print).toHaveBeenCalledWith('woni : ');
       expect(MissionUtils.Console.print).toHaveBeenCalledWith('pobi : --');
       expect(MissionUtils.Console.print).toHaveBeenCalledWith('woni : -');
-      expect(MissionUtils.Console.print).toHaveBeenCalledWith('최종 우승자 : pobi');
+      expect(MissionUtils.Console.print).toHaveBeenCalledWith('\n최종 우승자 : pobi');
     });
   });
 });

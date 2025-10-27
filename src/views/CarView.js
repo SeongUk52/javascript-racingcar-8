@@ -17,8 +17,7 @@ class CarView {
    * @returns {Promise<string>} 입력받은 자동차 이름 문자열
    */
   async inputCarNames() {
-    MissionUtils.Console.print(formatCarNamesPrompt());
-    const input = await MissionUtils.Console.readLineAsync();
+    const input = await MissionUtils.Console.readLineAsync(formatCarNamesPrompt());
     return input;
   }
 
@@ -27,8 +26,7 @@ class CarView {
    * @returns {Promise<string>} 입력받은 시도 횟수 문자열
    */
   async inputAttempts() {
-    MissionUtils.Console.print(formatAttemptsPrompt());
-    const input = await MissionUtils.Console.readLineAsync();
+    const input = await MissionUtils.Console.readLineAsync(formatAttemptsPrompt());
     return input;
   }
 

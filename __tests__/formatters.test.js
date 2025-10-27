@@ -32,7 +32,7 @@ describe('formatters 유틸리티', () => {
       const result = formatWinners(['pobi']);
 
       // then
-      expect(result).toBe('최종 우승자 : pobi');
+      expect(result).toBe('\n최종 우승자 : pobi');
     });
 
     test('공동 우승자를 올바르게 포맷팅한다', () => {
@@ -40,7 +40,7 @@ describe('formatters 유틸리티', () => {
       const result = formatWinners(['pobi', 'jun']);
 
       // then
-      expect(result).toBe('최종 우승자 : pobi, jun');
+      expect(result).toBe('\n최종 우승자 : pobi, jun');
     });
 
     test('여러 우승자를 올바르게 포맷팅한다', () => {
@@ -48,7 +48,7 @@ describe('formatters 유틸리티', () => {
       const result = formatWinners(['pobi', 'woni', 'jun']);
 
       // then
-      expect(result).toBe('최종 우승자 : pobi, woni, jun');
+      expect(result).toBe('\n최종 우승자 : pobi, woni, jun');
     });
   });
 
@@ -81,7 +81,7 @@ describe('formatters 유틸리티', () => {
       const result = formatCarNamesPrompt();
 
       // then
-      expect(result).toBe('경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)');
+      expect(result).toBe('경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n');
     });
   });
 
@@ -91,7 +91,7 @@ describe('formatters 유틸리티', () => {
       const result = formatAttemptsPrompt();
 
       // then
-      expect(result).toBe('시도할 횟수는 몇 회인가요?');
+      expect(result).toBe('시도할 횟수는 몇 회인가요?\n');
     });
   });
 
@@ -106,7 +106,7 @@ describe('formatters 유틸리티', () => {
       // when & then
       expect(carStatus1).toBe('pobi : -');
       expect(carStatus2).toBe('woni : --');
-      expect(winners).toBe('최종 우승자 : pobi');
+      expect(winners).toBe('\n최종 우승자 : pobi');
       expect(header).toBe('\n실행 결과');
     });
   });

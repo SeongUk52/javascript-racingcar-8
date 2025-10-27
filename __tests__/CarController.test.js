@@ -48,8 +48,6 @@ describe('CarController 클래스', () => {
       await carController.run();
 
       // then
-      expect(MissionUtils.Console.print).toHaveBeenCalledWith('경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)');
-      expect(MissionUtils.Console.print).toHaveBeenCalledWith('시도할 횟수는 몇 회인가요?');
       expect(MissionUtils.Console.print).toHaveBeenCalledWith('\n실행 결과');
       expect(MissionUtils.Console.print).toHaveBeenCalledWith('pobi : -');
       expect(MissionUtils.Console.print).toHaveBeenCalledWith('woni : ');
@@ -57,7 +55,7 @@ describe('CarController 클래스', () => {
       expect(MissionUtils.Console.print).toHaveBeenCalledWith('pobi : --');
       expect(MissionUtils.Console.print).toHaveBeenCalledWith('woni : -');
       // 마지막 차수에는 빈 줄 없음
-      expect(MissionUtils.Console.print).toHaveBeenCalledWith('최종 우승자 : pobi');
+      expect(MissionUtils.Console.print).toHaveBeenCalledWith('\n최종 우승자 : pobi');
     });
 
     test('공동 우승자 게임을 실행한다', async () => {
@@ -77,7 +75,7 @@ describe('CarController 클래스', () => {
       await carController.run();
 
       // then
-      expect(MissionUtils.Console.print).toHaveBeenCalledWith('최종 우승자 : pobi, woni');
+      expect(MissionUtils.Console.print).toHaveBeenCalledWith('\n최종 우승자 : pobi, woni');
     });
 
     test('에러 발생 시 에러 메시지를 출력하고 에러를 다시 던진다', async () => {
