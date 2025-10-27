@@ -1,4 +1,11 @@
 import { MissionUtils } from '@woowacourse/mission-utils';
+import { 
+  formatCarNamesPrompt, 
+  formatAttemptsPrompt, 
+  formatResultHeader, 
+  formatCarStatus, 
+  formatWinners 
+} from '../utility/formatters.js';
 
 /**
  * 자동차 경주 게임의 사용자 인터페이스를 담당하는 View 클래스
@@ -10,7 +17,7 @@ class CarView {
    * @returns {Promise<string>} 입력받은 자동차 이름 문자열
    */
   async inputCarNames() {
-    MissionUtils.Console.print('경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)');
+    MissionUtils.Console.print(formatCarNamesPrompt());
     const input = await MissionUtils.Console.readLineAsync();
     return input;
   }
@@ -20,7 +27,7 @@ class CarView {
    * @returns {Promise<string>} 입력받은 시도 횟수 문자열
    */
   async inputAttempts() {
-    MissionUtils.Console.print('시도할 횟수는 몇 회인가요?');
+    MissionUtils.Console.print(formatAttemptsPrompt());
     const input = await MissionUtils.Console.readLineAsync();
     return input;
   }
@@ -29,7 +36,7 @@ class CarView {
    * 실행 결과 헤더를 출력한다.
    */
   printResultHeader() {
-    MissionUtils.Console.print('\n실행 결과');
+    MissionUtils.Console.print(formatResultHeader());
   }
 
   /**
@@ -39,7 +46,7 @@ class CarView {
    */
   printCurrentStatus(status, addEmptyLine = true) {
     for (const car of status) {
-      MissionUtils.Console.print(`${car.name} : ${car.displayPosition}`);
+      MissionUtils.Console.print(formatCarStatus(car.name, car.displayPosition));
     }
     if (addEmptyLine) {
       MissionUtils.Console.print(''); // 빈 줄 추가
@@ -51,8 +58,7 @@ class CarView {
    * @param {string[]} winners - 우승자 이름 배열
    */
   printWinners(winners) {
-    const winnerNames = winners.join(', ');
-    MissionUtils.Console.print(`최종 우승자 : ${winnerNames}`);
+    MissionUtils.Console.print(formatWinners(winners));
   }
 
   /**
